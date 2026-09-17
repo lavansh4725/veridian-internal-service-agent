@@ -154,7 +154,7 @@ def create_ticket(text, result, employee="Unknown", email=""):
     return tid
 
 st.title("🛠️ Veridian Internal Service Agent")
-st.caption("Source-constrained IT support prototype • Veridian Corp • Assignment 2")
+st.caption("Source-constrained IT support prototype • Veridian Corp")
 
 with st.sidebar:
     st.header("Agent controls")
@@ -172,12 +172,12 @@ if mode == "Employee Support":
         "Expense login":"I can’t log into the expense tool, keeps saying invalid credentials.",
         "Unclear request":"hey can you help, its not working"
     }
-    choice = st.selectbox("Quick examples", list(examples))
+    choice = st.selectbox("Quick Examples", list(examples))
     default = examples[choice]
-    text = st.text_area("Employee message", value=default, height=120)
+    text = st.text_area("Employee Message", value=default, height=120)
     c1,c2 = st.columns([1,1])
-    with c1: employee = st.text_input("Employee name", "Demo Employee")
-    with c2: email = st.text_input("Employee email", "demo@veridian-corp.example")
+    with c1: employee = st.text_input("Employee Name", "Demo Employee")
+    with c2: email = st.text_input("Employee Email", "demo@veridian-corp.example")
     if st.button("Run agent", type="primary") and text.strip():
         result = resolve(text)
         log_event("AGENT_RUN", {"input":text,"classification":result["intent"],"status":result["status"],
